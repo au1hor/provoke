@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    
     public void move()
     {
         float x = Input.GetAxis("Horizontal");
