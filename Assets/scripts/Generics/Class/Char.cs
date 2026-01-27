@@ -7,14 +7,16 @@ public class Char
     public float maxHealth{get; protected set;}
     public float currentHealth{get; protected set;}
     public float moveSpeed{get; protected set;}
+    public float currentXp{get; protected set;}
     public float xpMulti{get; protected set;}
 
-    public Char(string name,float damage, float maxHealth,float moveSpeed,float xpMulti){
+    public Char(string name,float damage, float maxHealth,float moveSpeed,float xpMulti,float currentXp){
         this.name = name;
         this.strength = damage;
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
         this.moveSpeed = moveSpeed;
+        this.currentXp = currentXp;
         this.xpMulti = xpMulti;
     }
     public virtual void Apresentation()
@@ -29,6 +31,10 @@ public class Char
     public void setStrength(float incressValor, float bonusValor = 0)
     {
         
+    }
+    public void setXp(float incressValor)
+    {
+        currentXp += incressValor;
     }
     public float getStrength()
     {
