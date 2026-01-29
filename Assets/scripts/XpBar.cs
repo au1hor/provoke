@@ -6,10 +6,6 @@ public class XpBar : MonoBehaviour
     public Slider slider;
 
     private void Start() {
-        slider.maxValue = 200;
+        slider.maxValue = 100;
     }
-    public void incressXp()
-   {
-      slider.value += 10;
-   }
 }

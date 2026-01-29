@@ -520,6 +520,7 @@ GameObject:
   - component: {fileID: 645415529}
   - component: {fileID: 645415528}
   - component: {fileID: 645415527}
+  - component: {fileID: 645415530}
   m_Layer: 5
   m_Name: ShowStats
   m_TagString: Untagged
@@ -603,6 +604,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645415525}
   m_CullTransparentMesh: 1
+--- !u!114 &645415530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645415525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f32978c195c5afd44b6bd32dc677699c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 23
+  currentHealth: 0
+  strenght: 0
+  speed: 0
+  xpMulti: 0
 --- !u!1 &767386176
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,6 +706,7 @@ GameObject:
   m_Component:
   - component: {fileID: 788062032}
   - component: {fileID: 788062033}
+  - component: {fileID: 788062034}
   m_Layer: 5
   m_Name: XpBar
   m_TagString: Untagged
@@ -768,6 +787,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &788062034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788062031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36f032802994ba34ca93cf451f51984e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 788062033}
 --- !u!1 &883437007
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +882,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 883437010}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 788062034}
+        m_TargetAssemblyTypeName: XpBar, Assembly-CSharp
+        m_MethodName: incressXp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &883437010
 MonoBehaviour:
   m_ObjectHideFlags: 0
