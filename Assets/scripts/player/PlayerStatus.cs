@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,35 +9,39 @@ public class PlayerStatus : MonoBehaviour
 {
    Char Player;
    public Slider xpBar;
-   
-   
    public void createCharPlayer(string name)
    {
       
    }
-   public void incressXp(float mount)
+   public void IncressXp(float mount)
    {
-      xpBar.value += mount;
-      if (xpBar.value >= 100)
+      if (xpBar.value + mount > 100)
       {
          int levelUps;
-         float rest = (xpBar.value + mount) - 100;
-         if (rest >= 100)
+         float rest = xpBar.value + mount- 100;
+         levelUps  = (int)rest / 100;
+         rest = rest % 100;
+         for (int i = 0; i < levelUps + 1; i++)
          {
-            levelUps = (int)rest / 100;
-            for (int i = 0; i < levelUps; i++)
+            if (i == levelUps)
             {
-               rest -=100;
                Player.GainLevel(rest);
+               Debug.Log("Break");
+               break;
             }
-         }else
-         {
-             Player.GainLevel(rest);
+            Player.GainLevel();
          }
+         Debug.Log("Rest: " + rest);
          xpBar.value = rest;
-         Debug.Log(rest);
-         
+         return;
       }
+      else if (xpBar.value == 100)
+      {
+         xpBar.value = 0;
+         Player.GainLevel();  
+         return;
+      }
+      xpBar.value += mount;
       
    }
    private void Start() {

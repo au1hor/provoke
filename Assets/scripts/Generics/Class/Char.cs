@@ -26,7 +26,7 @@ public class Char
         Debug.Log("This character is a normal char but he have lot dreams!!!\n Keep dream and acting author! so that child realize his dreamns and be happy");
     }
     // Ganhos
-    public void GainLevel(float restXp)
+    public void GainLevel(float restXp = 0)
     {
         currentXp = restXp;
         level += 1;
