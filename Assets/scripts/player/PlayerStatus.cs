@@ -7,18 +7,23 @@ using UnityEngine.UI;
 // placeHolder antes do bglh ficar serio
 public class PlayerStatus : MonoBehaviour
 {
-   Char Player;
-   public Slider xpBar;
-   public void createCharPlayer(string name)
-   {
-      
+   private void Awake() {
+      PlayerStatus [] objs = FindObjectsByType<PlayerStatus>(FindObjectsSortMode.None);
+      if (objs.Length >1)
+      {
+         Destroy(this.gameObject);
+         
+      }
+      DontDestroyOnLoad(this.gameObject);
    }
+   public Char Player;
+   public Slider xpBar;
    public void IncressXp(float mount)
    {
-      if (xpBar.value + mount > 100)
+      if (xpBar.value * Player.xpMulti + mount > 100)
       {
          int levelUps;
-         float rest = xpBar.value + mount- 100;
+         float rest = xpBar.value * Player.xpMulti + mount- 100;
          levelUps  = (int)rest / 100;
          rest = rest % 100;
          for (int i = 0; i < levelUps + 1; i++)
@@ -37,14 +42,15 @@ public class PlayerStatus : MonoBehaviour
       }
       else if (xpBar.value == 100)
       {
+         xpBar.value *=  Player.xpMulti + mount;
          xpBar.value = 0;
          Player.GainLevel();  
          return;
       }
-      xpBar.value += mount;
+      
       
    }
    private void Start() {
-      Player = new Char("Nameless",0,10,0,1,0);
+      Player = new Char("Nameless",0,10,10,10,0);
    }
    }

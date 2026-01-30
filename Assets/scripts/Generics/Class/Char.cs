@@ -1,5 +1,5 @@
 using UnityEngine;
-
+ [System.Serializable]
 public class Char
 {
     public string name{get; protected set;}
