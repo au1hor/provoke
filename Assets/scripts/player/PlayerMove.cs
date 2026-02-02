@@ -1,39 +1,38 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
         Char Player;
         Rigidbody2D rb;
+        public float moveSpeed;
+        public bool isDashing;
     public void move()
     {
-         float cd = 0;
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
+        Vector2 inputMove = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized;
+        transform.position += (Vector3)inputMove * moveSpeed * Time.deltaTime;
+        
+    }
+    IEnumerator Dash()
+    {
+        isDashing = true;
+        Vector3 mouseWord = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWord.z = 0;
 
-        transform.position += new Vector3(x,y,0)  * Player.moveSpeed * Time.deltaTime ;
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        Vector2 dir = (mouseWord - transform.position).normalized;
+
+        float dashTime = 0.10f;
+        float dashSpeed = 25f;
+
+        float timer = 0f;
+        while(timer < dashTime)
         {
-           
-            if (y != 0)
-            {
-                rb.linearVelocity = new Vector2(0,10);
-                cd = 3;
-            }
-            else
-            {
-                 rb.linearVelocity = new Vector2(10,0);
-                 cd = 3;
-            }
-            
-            Debug.Log("Dash");
+            transform.position += (Vector3)dir * dashSpeed * Time.deltaTime;
+            timer += Time.deltaTime;
+            yield return null;
         }
-        if (cd > 0)
-        {
-            cd -= Time.deltaTime;
-        }else
-        {
-            rb.linearVelocity = Vector2.zero;
-        }
+        isDashing = false;
     }
    
     void Start()
@@ -45,7 +44,14 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        move();
-        Debug.Log(Player.moveSpeed);
+        if (!isDashing)
+        {
+           move(); 
+        }
+        if (Input.GetKeyDown(KeyCode.Space) )
+        {
+            StartCoroutine(Dash());
+        }
+        
     }
 }
