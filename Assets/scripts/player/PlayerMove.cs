@@ -8,29 +8,26 @@ public class PlayerMove : MonoBehaviour
         Rigidbody2D rb;
         public float moveSpeed;
         public bool isDashing;
+        Vector2 inputMove;
     public void move()
     {
-        Vector2 inputMove = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized;
+        inputMove = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized;
         transform.position += (Vector3)inputMove * moveSpeed * Time.deltaTime;
         
     }
     IEnumerator Dash()
     {
         isDashing = true;
-        Vector3 mouseWord = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseWord.z = 0;
-
-        Vector2 dir = (mouseWord - transform.position).normalized;
-
         float dashTime = 0.10f;
-        float dashSpeed = 25f;
+        float dashSpeed = 55f;
 
         float timer = 0f;
         while(timer < dashTime)
         {
-            transform.position += (Vector3)dir * dashSpeed * Time.deltaTime;
+            transform.position += (Vector3)inputMove.normalized * dashSpeed * Time.deltaTime;
             timer += Time.deltaTime;
-            yield return null;
+             yield return null;
+         
         }
         isDashing = false;
     }
