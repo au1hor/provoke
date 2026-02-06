@@ -9,6 +9,8 @@ public class PlayerMove : MonoBehaviour
         public float moveSpeed;
         public bool isDashing;
         Vector2 inputMove;
+        public float dashTime = 0.10f;
+        public float dashSpeed = 55f;   
     public void move()
     {
         inputMove = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized;
@@ -18,8 +20,7 @@ public class PlayerMove : MonoBehaviour
     IEnumerator Dash()
     {
         isDashing = true;
-        float dashTime = 0.10f;
-        float dashSpeed = 55f;
+       
 
         float timer = 0f;
         while(timer < dashTime)
