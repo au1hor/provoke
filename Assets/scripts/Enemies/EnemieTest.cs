@@ -5,6 +5,9 @@ public class EnemieTest : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float life = 100;
+    public Transform Player;
+     public float knockBack = 3f;
+    public float duration = 0.05f;
     void Start()
     {
         
@@ -18,22 +21,36 @@ public class EnemieTest : MonoBehaviour
             getDamage();
         }
     }
+    Coroutine hit ;
     public void getDamage()
     {
         life -= 1;
-        StartCoroutine(HitEffect());
+        if (hit != null)
+        {
+            StopCoroutine(hit);
+        }
+        hit = StartCoroutine(HitEffect());
     }
     IEnumerator HitEffect()
     {
         float timer = 0;
-        while (timer < 0.1)
+       
+        Vector3 startpos = transform.position;
+        Vector3 dir = (transform.position- Player.position).normalized;
+        Vector3 targePos = startpos +dir * knockBack;
+        this.GetComponent<SpriteRenderer>().color = Color.white;
+        while (timer <duration)
         {
             timer += Time.deltaTime;
-            this.GetComponent<SpriteRenderer>().color = Color.white;
+           transform.position = Vector3.Lerp(startpos,targePos,timer/duration);
+            
+              
              yield return null;
 
         }
+      
          this.GetComponent<SpriteRenderer>().color = Color.red;
+         hit = null;
        
     }
 }
