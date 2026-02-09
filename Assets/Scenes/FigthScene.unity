@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 464957668}
-  distance: 1.5
+  distance: 5
   minDistance: 1.5
 --- !u!212 &370324753
 SpriteRenderer:
@@ -196,7 +196,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6246221530790636972, guid: 76cbfc1d8b9f9bb48bdc501ae49402aa, type: 3}
+  m_Sprite: {fileID: 58537775430694542, guid: c187a972785c19142ab8a659bd91f094, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 464957671}
   - component: {fileID: 464957670}
   - component: {fileID: 464957669}
+  - component: {fileID: 464957673}
   - component: {fileID: 464957672}
   m_Layer: 0
   m_Name: Player
@@ -354,6 +355,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &464957673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464957668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e60f86211c7b8e488c438bd8547223a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slashSpr: {fileID: 7943235012717370368, guid: bd46533a5850e914dbbb62150b585141, type: 3}
+  Sprites:
+  - {fileID: -385355707632148847, guid: 21dfefa05d6781342aba395d2a2a9268, type: 3}
+  - {fileID: 6897636031897322568, guid: 21dfefa05d6781342aba395d2a2a9268, type: 3}
+  - {fileID: 6526440848273685774, guid: 21dfefa05d6781342aba395d2a2a9268, type: 3}
+  atackPoint: {fileID: 370324752}
 --- !u!1 &1479368527
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +578,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 100
+  Player: {fileID: 464957671}
+  knockBack: 1
+  duration: 0.05
 --- !u!212 &1919115845
 SpriteRenderer:
   m_ObjectHideFlags: 0
