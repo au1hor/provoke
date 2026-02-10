@@ -373,6 +373,7 @@ MonoBehaviour:
   - {fileID: 6897636031897322568, guid: 21dfefa05d6781342aba395d2a2a9268, type: 3}
   - {fileID: 6526440848273685774, guid: 21dfefa05d6781342aba395d2a2a9268, type: 3}
   atackPoint: {fileID: 370324752}
+  speed: 0.025
 --- !u!1 &1479368527
 GameObject:
   m_ObjectHideFlags: 0
