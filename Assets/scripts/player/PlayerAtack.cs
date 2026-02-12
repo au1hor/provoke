@@ -12,10 +12,10 @@ public class PlayerAtack : MonoBehaviour
     public float speed = 0.05f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void instanceSprite()
+    public void instanceSprite(Collider2D colider)
     {
-        GameObject Slash = Instantiate(slashSpr,atackPoint.transform.position,quaternion.identity);
-        StartCoroutine(SlashAnimation(Slash));
+        GameObject Slash = Instantiate(slashSpr,colider.transform.position,quaternion.identity);
+        StartCoroutine(SlashAnimation(Slash,colider));
     }
     public void rotacion(GameObject obj)
     {   UnityEngine.Random.Range(0,10);
@@ -30,7 +30,7 @@ public class PlayerAtack : MonoBehaviour
         As.Play();
         Destroy(As,As.clip.length);
     }
-    IEnumerator SlashAnimation(GameObject Slash)
+    IEnumerator SlashAnimation(GameObject Slash,Collider2D colider)
     {
         SpriteRenderer sr = Slash.GetComponent<SpriteRenderer>();
         rotacion(Slash);
@@ -41,14 +41,26 @@ public class PlayerAtack : MonoBehaviour
             
              yield return new WaitForSeconds(speed);
         }
-        
         sr.enabled = false;
+       yield return new WaitForSeconds(0.1f);
+        Destroy(Slash);
+        colider.GetComponent<EnemieTest>().getDamage();
         
+    }
+    public void DamageToEnemies()
+    {
+        Collider2D[] enes = atackPoint.CheckEnemies();
+        foreach (Collider2D ene in enes)
+        {   instanceSprite(ene);
+            
+
+        }
     }
     private void Update() {
         if (Input.GetMouseButtonDown(0))
         {
-            instanceSprite();
+            DamageToEnemies(); 
+
         }
     }
 }

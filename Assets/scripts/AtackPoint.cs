@@ -24,6 +24,11 @@ public class AtackPoint : MonoBehaviour
         float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0,0,angle - 90f);
     }
+    public Collider2D[] CheckEnemies()
+    {
+        Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,new Vector2(10,10),0f);
+       return hits;
+    }
     void Update()
     {
        AtackIndicatorMove();
