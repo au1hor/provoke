@@ -35,7 +35,6 @@ public class PlayerMove : MonoBehaviour
    
     void Start()
     {
-        Player = FindFirstObjectByType<PlayerStatus>().GetComponent<PlayerStatus>().Player;
         rb = GetComponent<Rigidbody2D>();
     }
 

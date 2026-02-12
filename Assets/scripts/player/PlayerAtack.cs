@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections;
 using System.Diagnostics;
 using Unity.Mathematics;
@@ -10,6 +10,7 @@ public class PlayerAtack : MonoBehaviour
     public Sprite [] Sprites;
     public AtackPoint atackPoint;
     public float speed = 0.05f;
+    float AtackWeigth;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void instanceSprite(Collider2D colider)
@@ -26,14 +27,26 @@ public class PlayerAtack : MonoBehaviour
     public void soundEffect(GameObject obj)
     {
         AudioSource As = obj.GetComponent<AudioSource>();
-        As.pitch = UnityEngine.Random.Range(1f,2.1f);
+        As.volume = 0.28f;
+        if (AtackWeigth < 3)
+        {
+            AtackWeigth += 0.25f;
+        }else
+        {
+            As.volume =0.5f;
+            AtackWeigth = 1;
+            obj.gameObject.transform.localScale = new Vector3(10,10,10);
+            CameraManager.Instance.shake();
+
+        }
+        As.pitch = AtackWeigth;
         As.Play();
         Destroy(As,As.clip.length);
     }
     IEnumerator SlashAnimation(GameObject Slash,Collider2D colider)
     {
         SpriteRenderer sr = Slash.GetComponent<SpriteRenderer>();
-        rotacion(Slash);
+        rotacion(Slash);    
         soundEffect(Slash);
         for (int i = 0; i < Sprites.Length; i++)
         {
@@ -42,9 +55,11 @@ public class PlayerAtack : MonoBehaviour
              yield return new WaitForSeconds(speed);
         }
         sr.enabled = false;
-       yield return new WaitForSeconds(0.1f);
-        Destroy(Slash);
-        colider.GetComponent<EnemieTest>().getDamage();
+       yield return new WaitForSeconds(0.05f);
+       colider.GetComponent<EnemieTest>().getDamage();
+       yield return new WaitForSeconds(0.7f);
+       Destroy(Slash);
+        
         
     }
     public void DamageToEnemies()
