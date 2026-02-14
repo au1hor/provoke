@@ -8,7 +8,7 @@ public class CameraManager : MonoBehaviour
     public float duration = 0.2f;
     public float magnitude = 0.3f;
     Vector3 originalPosition;
-
+    
     public static CameraManager Instance{get;private set;}
     private void Awake() {
         if (Instance != null && Instance != this)

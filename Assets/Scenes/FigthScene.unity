@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 370324753}
   - component: {fileID: 370324752}
   m_Layer: 0
-  m_Name: SlashAtack
+  m_Name: AtackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -375,6 +375,7 @@ MonoBehaviour:
   atackPoint: {fileID: 370324752}
   speed: 0.025
   AtackWeigth: 1
+  hits: 0
 --- !u!1 &1025089968
 GameObject:
   m_ObjectHideFlags: 0

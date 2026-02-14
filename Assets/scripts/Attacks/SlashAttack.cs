@@ -22,8 +22,9 @@ public class SlashAttack : MonoBehaviour
    IEnumerator AnimationDamage()
     {
         rotation();
+        progressionHit();
         sound();
-        player.GetComponent<PlayerAtack>().hits += 1;
+      
         for (int i = 0; i < sprites.Length; i++)
         {
             sprRender.sprite = sprites[i];
@@ -32,7 +33,7 @@ public class SlashAttack : MonoBehaviour
 
         sprRender.enabled = false;
         applyDamage();
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(3);
         Destroy(this.gameObject);
     }
     void rotation()
@@ -54,6 +55,22 @@ public class SlashAttack : MonoBehaviour
             ene.GetComponent<EnemieTest>().getDamage();
             
         }
+    }
+    void progressionHit()
+    {
+        PlayerAtack playerAtack = player.GetComponent<PlayerAtack>();
+        playerAtack.hits += 1;
+        atackPitch= 1 * playerAtack.hits;
+        if (playerAtack.hits == 5)
+        {
+            playerAtack.hits = 0;
+            atackPitch = 0.75f;
+            audioSource.volume = 1;
+            this.gameObject.transform.localScale = new Vector3(30,30,10);
+            sprRender.color = Color.red;
+            CameraManager.Instance.shake();
+        }
+        
     }
     private void Start() {
        sprRender = this.GetComponent<SpriteRenderer>();
