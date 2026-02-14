@@ -10,9 +10,9 @@ public class PlayerAtack : MonoBehaviour
     public Sprite [] Sprites;
     public AtackPoint atackPoint;
     public float speed = 0.05f;
-    float AtackWeigth;
+    public float AtackWeigth;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     public void instanceSprite(Collider2D colider)
     {
         GameObject Slash = Instantiate(slashSpr,colider.transform.position,quaternion.identity);
@@ -33,9 +33,10 @@ public class PlayerAtack : MonoBehaviour
             AtackWeigth += 0.25f;
         }else
         {
-            As.volume =0.5f;
-            AtackWeigth = 1;
+            As.volume =0.9f;
+            AtackWeigth = 1.5F;
             obj.gameObject.transform.localScale = new Vector3(10,10,10);
+            obj.GetComponent<SpriteRenderer>().color = Color.black;
             CameraManager.Instance.shake();
 
         }
@@ -48,14 +49,20 @@ public class PlayerAtack : MonoBehaviour
         SpriteRenderer sr = Slash.GetComponent<SpriteRenderer>();
         rotacion(Slash);    
         soundEffect(Slash);
+         if (speed >= 0.01)
+            {
+                speed -= 0.01f;
+            }else
+            {
+                speed = 0.05f;
+            }
         for (int i = 0; i < Sprites.Length; i++)
         {
             sr.sprite = Sprites[i];
-            
              yield return new WaitForSeconds(speed);
         }
         sr.enabled = false;
-       yield return new WaitForSeconds(0.05f);
+       yield return new WaitForSeconds(0.03f);
        colider.GetComponent<EnemieTest>().getDamage();
        yield return new WaitForSeconds(0.7f);
        Destroy(Slash);
