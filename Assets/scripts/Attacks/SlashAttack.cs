@@ -53,6 +53,7 @@ public class SlashAttack : MonoBehaviour
         foreach (Collider2D ene in eneColiders)
         {
             ene.GetComponent<EnemieTest>().getDamage();
+            HudManager.Instance.PopUpDamage(200,ene.gameObject);
             
         }
     }
