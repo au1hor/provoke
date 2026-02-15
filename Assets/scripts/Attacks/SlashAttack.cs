@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class SlashAttack : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class SlashAttack : MonoBehaviour
    public SpriteRenderer sprRender;
    public AudioSource audioSource;
    public Collider2D [] eneColiders;
+   //stats
+   public float damage;
    //som
    public float atackPitch;
 
@@ -24,6 +27,7 @@ public class SlashAttack : MonoBehaviour
         rotation();
         progressionHit();
         sound();
+        applyDamage();
       
         for (int i = 0; i < sprites.Length; i++)
         {
@@ -32,7 +36,7 @@ public class SlashAttack : MonoBehaviour
         }
 
         sprRender.enabled = false;
-        applyDamage();
+        
         yield return new WaitForSeconds(3);
         Destroy(this.gameObject);
     }
@@ -52,21 +56,23 @@ public class SlashAttack : MonoBehaviour
     {
         foreach (Collider2D ene in eneColiders)
         {
-            ene.GetComponent<EnemieTest>().getDamage();
-            HudManager.Instance.PopUpDamage(200,ene.gameObject);
-            
+            ene.GetComponent<EnemieTest>().getDamage(damage);
         }
     }
     void progressionHit()
     {
+        HudManager.Instance.resetToNormalHIt();
         PlayerAtack playerAtack = player.GetComponent<PlayerAtack>();
         playerAtack.hits += 1;
+        damage *= playerAtack.hits;
         atackPitch= 1 * playerAtack.hits;
         if (playerAtack.hits == 5)
         {
             playerAtack.hits = 0;
+            damage *= 100;
             atackPitch = 0.75f;
             audioSource.volume = 1;
+            HudManager.Instance.EspecialHit(Color.red,90);
             this.gameObject.transform.localScale = new Vector3(30,30,10);
             sprRender.color = Color.red;
             CameraManager.Instance.shake();

@@ -12,12 +12,14 @@ public class PlayerAtack : MonoBehaviour
     public float speed = 0.05f;
     public float AtackWeigth;
     public int hits;
+    public float atackDamage;
     
     
     public void instanceSprite(Collider2D colider,Collider2D[] enes)
     {
        GameObject Slash = Instantiate(slashSpr,colider.transform.position,quaternion.identity);
        SlashAttack slashAttack =  Slash.GetComponent<SlashAttack>();
+       slashAttack.damage =atackDamage;
        slashAttack.sprites = Sprites;
        slashAttack.player = this.gameObject;
        slashAttack.atackPoint = this.atackPoint.gameObject;

@@ -8,30 +8,18 @@ public class EnemieTest : MonoBehaviour
     public Transform Player;
      public float knockBack = 3f;
     public float duration = 0.05f;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            getDamage();
-        }
-    }
     Coroutine hit ;
-    public void getDamage()
+    public void getDamage(float damage)
     {
         life -= 1;
         if (hit != null)
         {
             StopCoroutine(hit);
         }
-        hit = StartCoroutine(HitEffect());
+        hit = StartCoroutine(HitEffect(damage));
     }
-    IEnumerator HitEffect()
+    IEnumerator HitEffect(float damage)
     {
         float timer = 0;
        
@@ -51,6 +39,7 @@ public class EnemieTest : MonoBehaviour
       
          this.GetComponent<SpriteRenderer>().color = Color.red;
          hit = null;
+         HudManager.Instance.PopUpDamage(damage,this.gameObject);
        
     }
 }
