@@ -65,8 +65,9 @@ public class SlashAttack : MonoBehaviour
         PlayerAtack playerAtack = player.GetComponent<PlayerAtack>();
         playerAtack.hits += 1;
         damage *= playerAtack.hits;
-        atackPitch= 1 * playerAtack.hits;
-        if (playerAtack.hits == 5)
+        atackPitch= Mathf.Max(0.1f * playerAtack.hits,0.7f);
+        Debug.Log(atackPitch);
+        if (playerAtack.hits == 22)
         {
             playerAtack.hits = 0;
             damage *= 100;

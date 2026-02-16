@@ -8,6 +8,7 @@ public class PopUp : MonoBehaviour
 
     private void Start() {
         text.text = textString;
+        
     }
     
 }
