@@ -2,6 +2,8 @@ using JetBrains.Annotations;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 public class HudManager : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class HudManager : MonoBehaviour
     public static HudManager Instance{get;private set;}
     public float impulseForce;
     private float impulseForceDefault;
+     public Slider xpBar;
     private void Awake() {
         if (Instance != null && Instance !=this)
         {

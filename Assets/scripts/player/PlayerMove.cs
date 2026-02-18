@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
-        Char Player;
         Rigidbody2D rb;
         public float moveSpeed;
         public bool isDashing;

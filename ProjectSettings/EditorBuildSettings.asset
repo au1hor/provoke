@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/deskTop.unity
     guid: 3d7bf29412d51274bb92b4b12cd19f97
   - enabled: 0
-    path: Assets/Scenes/StartScene.unity
+    path: Assets/Scenes/NoUse/StartScene.unity
     guid: 2ead196317eb22a48b44336c058fa32a
   - enabled: 0
     path: Assets/Scenes/FigthScene.unity
