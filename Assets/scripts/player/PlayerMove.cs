@@ -20,8 +20,6 @@ public class PlayerMove : MonoBehaviour
     IEnumerator Dash()
     {
         isDashing = true;
-       
-
         float timer = 0f;
         while(timer < dashTime)
         {
