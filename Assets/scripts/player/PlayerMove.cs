@@ -14,7 +14,6 @@ public class PlayerMove : MonoBehaviour
     {
         inputMove = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized;
         transform.position += (Vector3)inputMove * moveSpeed * Time.deltaTime;
-        
     }
     IEnumerator Dash()
     {
