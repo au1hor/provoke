@@ -19,5 +19,5 @@ MonoBehaviour:
   mentalChng: 0
   moneyChng: 0
   incomeChng: 0
-  startItem: 2
+  startItem: 3
   cardType: 0

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bc01feb7e605d64faa33e6a84f44165, type: 3}
-  m_Name: CardsSo
+  m_Name: MansFellow
   m_EditorClassIdentifier: 
   CardName: 'Man''s fellow '
   healthChng: 80
@@ -19,5 +19,5 @@ MonoBehaviour:
   mentalChng: 40
   moneyChng: -120
   incomeChng: 0
-  startItem: 0
+  startItem: 1
   cardType: 0

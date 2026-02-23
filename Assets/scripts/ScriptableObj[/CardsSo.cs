@@ -9,10 +9,12 @@ using UnityEngine;
     }
 public enum StartItem
 {
+    OnlyYourself,
     Cat,
     Dog,
-    Katanna,
+    Katana,
     CoffeMachine,
+    ButlerRobbot,
 }
 [CreateAssetMenu(fileName = "CardsSo", menuName = "Scriptable Objects/CardsSo")]
 public class CardsSo : ScriptableObject

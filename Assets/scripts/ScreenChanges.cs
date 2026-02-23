@@ -1,3 +1,5 @@
+using System.Collections;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,25 +7,29 @@ public class ScreenChanges : MonoBehaviour
 {
     public GameObject StartScreen;
     public GameObject AtributeScreen;
-    
-    public enum Scenes
-    {
-        StartScene,
-        SelectFirstAtributes
-    }
+    public GameObject CatMidleFinger;
 
-    public void changeScene(Scenes scenes)
-    {
-        SceneManager.LoadScene(scenes.ToString());
     
-    }
-    public void ChangeToStartScreen()
+    public void ChangeFirtsAtributes()
     {
-        changeScene(Scenes.StartScene);
+        StartScreen.gameObject.SetActive(false);
+        AtributeScreen.gameObject.SetActive(true);
     }
-     public void ChangeToInicAtributes()
+     public void ChangeToDesktopScene()
     {
-        changeScene(Scenes.SelectFirstAtributes);
+        SceneManager.LoadScene("deskTop");
     }
-    
+    public void WarningNotCoded()
+    {
+        StartCoroutine(catMidleFingerSay());
+    }
+    IEnumerator catMidleFingerSay(){
+        
+        CatMidleFinger.gameObject.SetActive(true);
+        CatMidleFinger.GetComponent<AudioSource>().time = 0.25f;
+        yield return new WaitForSeconds(0.5f);
+        CatMidleFinger.gameObject.SetActive(false);
+        
+
+    }
 }
