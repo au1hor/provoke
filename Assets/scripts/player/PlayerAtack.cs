@@ -19,7 +19,7 @@ public class PlayerAtack : MonoBehaviour
     {
        GameObject Slash = Instantiate(slashSpr,colider.transform.position,quaternion.identity);
        SlashAttack slashAttack =  Slash.GetComponent<SlashAttack>();
-       slashAttack.damage =100;
+       slashAttack.damage =12;
        slashAttack.sprites = Sprites;
        slashAttack.player = this.gameObject;
        slashAttack.atackPoint = this.atackPoint.gameObject;
