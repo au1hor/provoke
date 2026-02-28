@@ -8,6 +8,7 @@ public class EnemieTest : MonoBehaviour
     public Transform Player;
      public float knockBack = 3f;
     public float duration = 0.05f;
+    
 
     Coroutine hit ;
     public void getDamage(float damage)

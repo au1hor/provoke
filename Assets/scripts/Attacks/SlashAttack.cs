@@ -66,17 +66,19 @@ public class SlashAttack : MonoBehaviour
         playerAtack.hits += 1;
         damage *= playerAtack.hits;
         atackPitch= Mathf.Max(0.1f * playerAtack.hits,0.7f);
-        Debug.Log(atackPitch);
+        
         if (playerAtack.hits == 22)
         {
             playerAtack.hits = 0;
             damage *= 100000;
-            atackPitch = 0.75f;
+            atackPitch = 0.65f;
             audioSource.volume = 1;
             HudManager.Instance.EspecialHit(Color.red,90);
             this.gameObject.transform.localScale = new Vector3(30,30,10);
-            sprRender.color = Color.red;
+            sprRender.color = Color.red;    
             CameraManager.Instance.shake();
+            
+            Debug.Log("salve");
         }
         
     }
