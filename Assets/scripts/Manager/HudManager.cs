@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using TMPro;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
@@ -16,6 +17,7 @@ public class HudManager : MonoBehaviour
     private float impulseForceDefault;
     public Slider xpBar;
     // Inventory
+    public GameObject InventoryObj;
     public GameObject[] slots;
     private void Awake() {
         if (Instance != null && Instance !=this)
@@ -31,8 +33,23 @@ public class HudManager : MonoBehaviour
         fontSizeDefault = textPopDamage.fontSize;
         colorDefault = Color.white;
         impulseForceDefault = impulseForce;
-    }   
-
+    }
+    private void Update(){
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            InventoryShow();
+        }
+    }
+    public void InventoryShow(){
+        if (InventoryObj.activeSelf)
+        {
+            InventoryObj.gameObject.SetActive(false);
+        }
+        else
+        {
+            InventoryObj.gameObject.SetActive(true);
+        }
+    }
     public void PopUpDamage(float damage,GameObject target)
     {
         Vector2 direction = new Vector2(UnityEngine.Random.Range(-1f,1f),1 * impulseForce);

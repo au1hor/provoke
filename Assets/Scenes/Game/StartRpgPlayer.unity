@@ -618,7 +618,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 500666467}
         m_TargetAssemblyTypeName: ChooseButton, Assembly-CSharp
-        m_MethodName: onclick
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
