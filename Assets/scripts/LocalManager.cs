@@ -1,12 +1,10 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ChooseButton : MonoBehaviour
 {
-    public void onclick()
+    public void OnClick()
     {
         SceneManager.LoadScene("FigthScene");
     }
-   
 }
