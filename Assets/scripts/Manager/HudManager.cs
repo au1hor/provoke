@@ -14,7 +14,9 @@ public class HudManager : MonoBehaviour
     public static HudManager Instance{get;private set;}
     public float impulseForce;
     private float impulseForceDefault;
-     public Slider xpBar;
+    public Slider xpBar;
+    // Inventory
+    public GameObject[] slots;
     private void Awake() {
         if (Instance != null && Instance !=this)
         {
