@@ -36,6 +36,7 @@ public class LoginScene : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void EnterInTheGame()
     {
         SceneManager.LoadScene("StartRpgPlayer");
+        Debug.Log("sd");
     }
 
     private void Update()
