@@ -70,7 +70,7 @@ public class SlashAttack : MonoBehaviour
         if (playerAtack.hits == 22)
         {
             playerAtack.hits = 0;
-            damage *= 100000;
+            damage *= 100;
             atackPitch = 0.65f;
             audioSource.volume = 1;
             HudManager.Instance.EspecialHit(Color.red,90);

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848fc3406b4611f3bba8fa19d8f99892, type: 3}
+  m_Name: Slayer
+  m_EditorClassIdentifier: Assembly-CSharp::ClassesSo
+  classType: 0
+  damage:
+    min: 20
+    max: 36
+  life:
+    min: 25
+    max: 35
+  speed:
+    min: 50
+    max: 100
+  atackSpeed:
+    min: 0.5
+    max: 1

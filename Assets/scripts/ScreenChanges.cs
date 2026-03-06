@@ -1,17 +1,28 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ScreenChanges : MonoBehaviour
 {
     public GameObject StartScreen;
+    public GameObject NamearScreen;
     public GameObject AtributeScreen;
     public GameObject CatMidleFinger;
+    public Data data;
+    public TMP_InputField inputName;
+    public TMP_InputField inputNick;
 
-    
-    public void ChangeFirtsAtributes()
+     public void ChangeNames()
     {
         StartScreen.gameObject.SetActive(false);
+        NamearScreen.gameObject.SetActive(true);
+    }
+    public void ChangeFirtsAtributes()
+    {   
+        data.playerName = inputName.text;
+        data.playerNick = inputNick.text;
+        NamearScreen.gameObject.SetActive(false);
         AtributeScreen.gameObject.SetActive(true);
     }
      public void ChangeToDesktopScene()

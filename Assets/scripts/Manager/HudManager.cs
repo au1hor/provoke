@@ -12,13 +12,18 @@ public class HudManager : MonoBehaviour
     TMP_Text textPopDamage;
     public Color colorDefault;
     public float fontSizeDefault;
-    public static HudManager Instance{get;private set;}
     public float impulseForce;
     private float impulseForceDefault;
     public Slider xpBar;
     // Inventory
     public GameObject InventoryObj;
     public GameObject[] slots;
+    public TMP_Text nick;
+    public TMP_Text damage;
+    public TMP_Text life;
+    public TMP_Text speed;
+    public TMP_Text atackSpeed;
+     public static HudManager Instance{get;private set;}
     private void Awake() {
         if (Instance != null && Instance !=this)
         {
@@ -40,13 +45,24 @@ public class HudManager : MonoBehaviour
             InventoryShow();
         }
     }
+    public void UpdateInventoryHud(){
+        Char Player = Data.Instance.Player;
+        nick.text = Player.nick;
+        damage.text = $"Base Damage: {Player.damage:f2}";
+        life.text = $"LifePoints: {Player.life:f2}/{Player.life:f2}";
+        speed.text = $"Speed: {Player.speed:f2}";
+        atackSpeed.text = $"AtackSpeed: {Player.atackSpeed:f2}";
+
+    }
     public void InventoryShow(){
+       
         if (InventoryObj.activeSelf)
         {
             InventoryObj.gameObject.SetActive(false);
         }
         else
         {
+             UpdateInventoryHud();
             InventoryObj.gameObject.SetActive(true);
         }
     }
