@@ -70,5 +70,3 @@ public class Espada : Char
         Debug.Log($"Hey a simple Espadamy status :{damage},{life},{speed},{atackSpeed}");
     }
 }
-// 2  - Iniciar a animação de ataque basico 
-// 3 - Sprite do no minimo 2 itens 
