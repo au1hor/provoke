@@ -56,7 +56,7 @@ public class SlashAttack : MonoBehaviour
     {
         foreach (Collider2D ene in eneColiders)
         {
-            ene.GetComponent<EnemieTest>().getDamage(damage);
+            ene.GetComponent<EnemieBehaviour>().getDamage(damage);
         }
     }
     void progressionHit()

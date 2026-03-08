@@ -4,7 +4,7 @@ using UnityEngine;
 public class ClassManager : MonoBehaviour
 {
     public TMP_Text SelectText;
-    public Data data;
+    public data data;
     public string nick;
     Char Player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,7 +20,7 @@ public class ClassManager : MonoBehaviour
                 nick ="nao achou :p";
             }else{
 
-                data = obj.GetComponent<Data>();
+                data = obj.GetComponent<data>();
                 nick = data.playerNick;
             }
           

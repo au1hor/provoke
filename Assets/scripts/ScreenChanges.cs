@@ -9,7 +9,7 @@ public class ScreenChanges : MonoBehaviour
     public GameObject NamearScreen;
     public GameObject AtributeScreen;
     public GameObject CatMidleFinger;
-    public Data data;
+    public data data;
     public TMP_InputField inputName;
     public TMP_InputField inputNick;
 

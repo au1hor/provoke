@@ -15,7 +15,7 @@ public class PlayerAtack : MonoBehaviour
     public float atackDamage;
     
     public void Start(){
-        atackDamage = Data.Instance.Player.damage;
+        atackDamage = data.Instance.Player.damage;
     }
     
     public void instanceSprite(Collider2D colider,Collider2D[] enes)

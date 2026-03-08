@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemieTest : MonoBehaviour
+public class EnemieBehaviour : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float life = 100;
     public Transform Player;
-     public float knockBack = 3f;
+    public float knockBack = 3f;
     public float duration = 0.05f;
     
 

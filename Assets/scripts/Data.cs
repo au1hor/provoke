@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Data : MonoBehaviour
+public class data : MonoBehaviour
 {
     public string playerName = "uNaMeD";
     public string playerNick = "uNiCkEd";
     public Char Player;
-    public static Data Instance{get;private set;}
+    public static data Instance{get;private set;}
     void Awake(){
         DontDestroyOnLoad(this.gameObject);
           if (Instance != null && Instance !=this)
@@ -17,6 +17,6 @@ public class Data : MonoBehaviour
         }
     }
     public void Update(){
-        Debug.Log(playerNick);
+        
     }
 }

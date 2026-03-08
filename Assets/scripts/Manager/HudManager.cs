@@ -46,7 +46,8 @@ public class HudManager : MonoBehaviour
         }
     }
     public void UpdateInventoryHud(){
-        Char Player = Data.Instance.Player;
+        data data = GameObject.FindGameObjectWithTag("Data").GetComponent<data>();
+        Char Player = data.Instance.Player;
         nick.text = Player.nick;
         damage.text = $"Base Damage: {Player.damage:f2}";
         life.text = $"LifePoints: {Player.life:f2}/{Player.life:f2}";
@@ -71,7 +72,7 @@ public class HudManager : MonoBehaviour
         Vector2 direction = new Vector2(UnityEngine.Random.Range(-1f,1f),1 * impulseForce);
         GameObject popDmg = Instantiate(prefabPopDmg,target.transform.position,quaternion.identity);
         popDmg.GetComponent<Rigidbody2D>().AddForce(direction,ForceMode2D.Impulse);
-        popDmg.GetComponent<PopUp>().textString = damage.ToString();
+        popDmg.GetComponent<PopUp>().textString = $"{damage:f2}";
         Destroy(popDmg,0.7f);
     }
     public void EspecialHit(Color color,float fontSize)
