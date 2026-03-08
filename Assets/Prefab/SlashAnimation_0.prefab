@@ -36,6 +36,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8135169704134289790
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -54,6 +55,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -75,9 +78,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -385355707632148847, guid: 21dfefa05d6781342aba395d2a2a9268, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -87,7 +92,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &-4257439543164174914
 MonoBehaviour:
@@ -107,8 +111,9 @@ MonoBehaviour:
   sprites: []
   sprRender: {fileID: 8135169704134289790}
   audioSource: {fileID: 0}
+  eneColiders: []
+  damage: 0
   atackPitch: 4
-  clipLength: 0
   size: {x: 5, y: 5}
 --- !u!82 &-4399386217540290189
 AudioSource:
@@ -123,7 +128,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4264faa81477c9f47b2724bf116442ba, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.228
+  m_Volume: 0.142
   m_Pitch: 3
   Loop: 0
   Mute: 0
