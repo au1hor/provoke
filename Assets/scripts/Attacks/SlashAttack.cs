@@ -21,7 +21,6 @@ public class SlashAttack : MonoBehaviour
    public float atackPitch;
 
    public Vector2 size = new Vector2(5f,5f);
-   
    IEnumerator AnimationDamage()
     {
         rotation();
@@ -37,7 +36,7 @@ public class SlashAttack : MonoBehaviour
 
         sprRender.enabled = false;
         
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         Destroy(this.gameObject);
     }
     void rotation()
@@ -56,7 +55,11 @@ public class SlashAttack : MonoBehaviour
     {
         foreach (Collider2D ene in eneColiders)
         {
-            ene.GetComponent<EnemieBehaviour>().getDamage(damage);
+            if (ene.tag != "Player")
+            {
+                ene.GetComponent<EnemieBehaviour>().GetDamage(damage);
+                Debug.Log(ene);
+            }
         }
     }
     void progressionHit()
@@ -86,7 +89,5 @@ public class SlashAttack : MonoBehaviour
        sprRender = this.GetComponent<SpriteRenderer>();
        audioSource = this.GetComponent<AudioSource>();
        StartCoroutine(AnimationDamage());
-       
-
     }
 }

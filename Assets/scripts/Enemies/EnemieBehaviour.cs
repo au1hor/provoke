@@ -8,12 +8,15 @@ public class EnemieBehaviour : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float life = 100;
     public float speed;
+    public float rangeAttack;
+    public float rangeChase;
     public Transform player;
     public float knockBack = 3f;
     public float duration = 0.05f;
     public States state;
     public float distance;
     public enum States{
+        getDamage,
         chilling,
         chase,
         attack
@@ -23,7 +26,7 @@ public class EnemieBehaviour : MonoBehaviour
     
     Coroutine hit ;
 
-    public void getDamage(float damage)
+    public void GetDamage(float damage)
     {
         life -= 1;
         if (hit != null)
@@ -31,6 +34,7 @@ public class EnemieBehaviour : MonoBehaviour
             StopCoroutine(hit);
         }
         hit = StartCoroutine(HitEffect(damage));
+        state = States.getDamage;
     }
     IEnumerator HitEffect(float damage)
     {
@@ -38,43 +42,53 @@ public class EnemieBehaviour : MonoBehaviour
         Vector3 startpos = transform.position;
         Vector3 dir = (transform.position- player.position).normalized;
         Vector3 targePos = startpos +dir * knockBack;
-        this.GetComponent<SpriteRenderer>().color = Color.white;
         while (timer <duration)
         {
             timer += Time.deltaTime;
-           transform.position = Vector3.Lerp(startpos,targePos,timer/duration);
-             yield return null;
+            transform.position = Vector3.Lerp(startpos,targePos,timer/duration);
+            yield return null;
         }
-         this.GetComponent<SpriteRenderer>().color = Color.red;
-         hit = null;
-         HudManager.Instance.PopUpDamage(damage,this.gameObject);
+        HudManager.Instance.PopUpDamage(damage,this.gameObject);
+        yield return new WaitForSeconds(0.05f);
+        hit = null;
     }
-    public void stateChange(States estado){
+    public void StateChange(States estado){
         switch(estado){
             default:
-                Debug.Log("chilling");
                 sprite.color = Color.white;
                 StateText.text = $"<color=green>chilling...</color> ";
             break;
+            case States.getDamage:
+                    sprite.color = Color.white;
+                    StateText.text = $"<color=blue>HITted</color> ";
+            break;
             case States.chase:
-                Debug.Log("Chasing");
                 this.transform.position = Vector3.MoveTowards(transform.position,player.transform.position,speed * Time.deltaTime);
-                sprite.color = Color.red;
+                sprite.color = Color.orange;
                 StateText.text = $"<color=orange>Chasinng...</color> ";
             break;
             case States.attack:
-                Debug.Log("Attacking");
+                sprite.color = Color.darkRed;
+                StateText.text = $"<color=red>Atacking</color>";
             break;
         }
     }
-    public void popUpState(){}
+    public void PopUpState(){}
     public void Update(){
         distance = (this.transform.position - player.transform.position).magnitude;
-        if (distance <= 10)
+        if (hit!= null)
         {
-            stateChange(States.chase);  
+            StateChange(States.getDamage);
+        }
+        else if (distance <= rangeAttack )
+        {
+            StateChange(States.attack);
+        }
+        else if(distance <= rangeChase)
+        {
+            StateChange(States.chase);  
         }else {
-            stateChange(States.chilling);
+            StateChange(States.chilling);
         }
     }
 }
