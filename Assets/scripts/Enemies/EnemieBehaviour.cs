@@ -34,10 +34,11 @@ public class EnemieBehaviour : MonoBehaviour
             StopCoroutine(hit);
         }
         hit = StartCoroutine(HitEffect(damage));
-        state = States.getDamage;
+        StateChange(States.getDamage);
     }
     IEnumerator HitEffect(float damage)
     {
+        Debug.Log("AIAIAI");
         float timer = 0;
         Vector3 startpos = transform.position;
         Vector3 dir = (transform.position- player.position).normalized;
@@ -53,41 +54,65 @@ public class EnemieBehaviour : MonoBehaviour
         hit = null;
     }
     public void StateChange(States estado){
+        if (estado == state)return;
+        state = estado;
         switch(estado){
             default:
                 sprite.color = Color.white;
-                StateText.text = $"<color=green>chilling...</color> ";
+                textAnimaton($"<color=green>Chilling");
             break;
             case States.getDamage:
-                    sprite.color = Color.white;
-                    StateText.text = $"<color=blue>HITted</color> ";
+                    sprite.color = Color.blue;
+                    textAnimaton($"<color=blue>HItted");
             break;
             case States.chase:
-                this.transform.position = Vector3.MoveTowards(transform.position,player.transform.position,speed * Time.deltaTime);
                 sprite.color = Color.orange;
-                StateText.text = $"<color=orange>Chasinng...</color> ";
+                textAnimaton($"<color=orange>Chasinng");
             break;
             case States.attack:
                 sprite.color = Color.darkRed;
-                StateText.text = $"<color=red>Atacking</color>";
+                textAnimaton($"<color=red>Atacking");
             break;
         }
     }
-    public void PopUpState(){}
+    Coroutine textAnim;
+    public void textAnimaton(string texto){
+        if(textAnim != null){
+            StopCoroutine(textAnim);
+            Debug.Log("cooritina paradinha");
+        }
+        textAnim = StartCoroutine(TextAnimation(texto));
+        
+
+    }
+    IEnumerator TextAnimation(string Texto){
+         Debug.Log("Coroutine started");
+        while (true)
+        {
+        StateText.text = Texto;
+        yield return new WaitForSeconds(0.3f);
+        StateText.text += ".";
+        yield return new WaitForSeconds(0.3f);
+        StateText.text += ".";
+        yield return new WaitForSeconds(0.3f);
+        StateText.text += ".";
+        yield return new WaitForSeconds(0.3f);
+       
+        }
+        
+    }
     public void Update(){
         distance = (this.transform.position - player.transform.position).magnitude;
-        if (hit!= null)
-        {
-            StateChange(States.getDamage);
-        }
-        else if (distance <= rangeAttack )
+
+        if (distance <= rangeAttack && hit == null )
         {
             StateChange(States.attack);
         }
-        else if(distance <= rangeChase)
+        else if(distance <= rangeChase && hit == null)
         {
             StateChange(States.chase);  
-        }else {
+            this.transform.position = Vector3.MoveTowards(transform.position,player.transform.position,speed * Time.deltaTime);
+        }else if(hit == null){
             StateChange(States.chilling);
         }
     }

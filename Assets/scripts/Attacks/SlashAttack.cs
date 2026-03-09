@@ -58,7 +58,6 @@ public class SlashAttack : MonoBehaviour
             if (ene.tag != "Player")
             {
                 ene.GetComponent<EnemieBehaviour>().GetDamage(damage);
-                Debug.Log(ene);
             }
         }
     }
