@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class HudManager : MonoBehaviour
 {
+    // data
+    public data data;
+    public Char Player;
     public GameObject prefabPopDmg;
     TMP_Text textPopDamage;
     public Color colorDefault;
@@ -35,26 +38,36 @@ public class HudManager : MonoBehaviour
             Instance =this;
         }
     } 
+    public void GetData(){
+        data = GameObject.FindGameObjectWithTag("Data").GetComponent<data>();
+        Player = data.Instance.Player;
+    }
     private void Start() {
+        GetData();
         textPopDamage = prefabPopDmg.GetComponentInChildren<TMP_Text>();
         fontSizeDefault = textPopDamage.fontSize;
         colorDefault = Color.white;
         impulseForceDefault = impulseForce;
+        hpbar.maxValue = Player.life;
+        Debug.Log(Player.life);
     }
     private void Update(){
+        GetData();
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             InventoryShow();
         }
     }
     public void UpdateInventoryHud(){
-        data data = GameObject.FindGameObjectWithTag("Data").GetComponent<data>();
-        Char Player = data.Instance.Player;
+     
         nick.text = Player.nick;
         damage.text = $"Base Damage: {Player.damage:f2}";
         life.text = $"LifePoints: {Player.life:f2}/{Player.life:f2}";
         speed.text = $"Speed: {Player.speed:f2}";
         atackSpeed.text = $"AtackSpeed: {Player.atackSpeed:f2}";
+
+    }
+    public void updateHpBar(){
 
     }
     public void InventoryShow(){
