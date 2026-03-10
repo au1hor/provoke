@@ -22,6 +22,8 @@ public class HudManager : MonoBehaviour
     public TMP_Text damage;
     public TMP_Text life;
     public TMP_Text speed;
+    // HUD PLAYER
+    public Slider hpbar;
     public TMP_Text atackSpeed;
      public static HudManager Instance{get;private set;}
     private void Awake() {
