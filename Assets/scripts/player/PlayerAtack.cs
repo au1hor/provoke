@@ -16,9 +16,9 @@ public class PlayerAtack : MonoBehaviour
     public float atackDamage;
     
     public void Start(){
-        if (data.Instance != null)
+        if (Data.Instance != null)
         {
-            atackDamage = data.Instance.Player.damage;
+            atackDamage = Data.Instance.Player.damage;
         }else{
             atackDamage = 1;
         }

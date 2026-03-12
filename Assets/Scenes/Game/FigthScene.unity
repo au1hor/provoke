@@ -1515,7 +1515,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 0}
+  m_SizeDelta: {x: -0.359, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &438671914
 MonoBehaviour:
@@ -1853,6 +1853,19 @@ MonoBehaviour:
   speed: {fileID: 2014268645}
   hpbar: {fileID: 1640493975}
   atackSpeed: {fileID: 822460382}
+  classesSo: {fileID: 11400000, guid: 8e289b8e42b8bf99cbea7b45a4b35330, type: 2}
+  DmgR:
+    min: 0
+    max: 1
+  LifeR:
+    min: 0
+    max: 3
+  speedR:
+    min: 0
+    max: 4
+  atackSpdR:
+    min: 0
+    max: 5
 --- !u!4 &538600201
 Transform:
   m_ObjectHideFlags: 0
@@ -4988,8 +5001,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -7.5, y: 0}
+  m_SizeDelta: {x: -15, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1367092633
 PrefabInstance:
@@ -5767,7 +5780,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 44.6
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7574,8 +7587,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -5, y: 0}
+  m_SizeDelta: {x: -10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2059540410 stripped
 GameObject:

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class HudManager : MonoBehaviour
 {
     // data
-    public data data;
+    public Data data;
     public Char Player;
     public GameObject prefabPopDmg;
     TMP_Text textPopDamage;
@@ -29,6 +29,12 @@ public class HudManager : MonoBehaviour
     public Slider hpbar;
     public TMP_Text atackSpeed;
      public static HudManager Instance{get;private set;}
+     //placeholder
+     public ClassesSo classesSo;
+     public StatsRange DmgR;
+    public StatsRange LifeR;
+    public StatsRange speedR;
+    public StatsRange atackSpdR;
     private void Awake() {
         if (Instance != null && Instance !=this)
         {
@@ -39,8 +45,19 @@ public class HudManager : MonoBehaviour
         }
     } 
     public void GetData(){
-        data = GameObject.FindGameObjectWithTag("Data").GetComponent<data>();
-        Player = data.Instance.Player;
+        GameObject dataObj = GameObject.FindGameObjectWithTag("Data");
+        if(dataObj == null){
+            Debug.Log("Inciando a criação da Data");
+            GameObject dataOBj = new("DataPlaceholder");
+            data = dataOBj.AddComponent<Data>();
+            data.Player = new createChar("DataNotFound!!!",classesSo,ClassType.Warrior,DmgR,LifeR,speedR,atackSpdR).Create(classesSo);
+            data.playerName = "Eipsiudoidinhadoforro";
+            data.playerNick = "DataNotFound!!!!!";
+            Data.Instance.Player.life = 999;
+        }else{
+            data = dataObj.GetComponent<Data>();
+        }
+        Player = Data.Instance.Player;
     }
     private void Start() {
         GetData();
@@ -49,10 +66,8 @@ public class HudManager : MonoBehaviour
         colorDefault = Color.white;
         impulseForceDefault = impulseForce;
         hpbar.maxValue = Player.life;
-        Debug.Log(Player.life);
     }
     private void Update(){
-        GetData();
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             InventoryShow();
