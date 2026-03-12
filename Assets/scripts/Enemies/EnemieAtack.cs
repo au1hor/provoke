@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemieAtack : MonoBehaviour
 {
 
-    public void Update(){
-
+    public void Atack(GameObject enimie){
+        
     }
 }

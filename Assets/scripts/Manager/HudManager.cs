@@ -10,7 +10,8 @@ public class HudManager : MonoBehaviour
 {
     // data
     public Data data;
-    public Char Player;
+    public GameObject Player;
+    public PlayerStatus playerStatus;
     public GameObject prefabPopDmg;
     TMP_Text textPopDamage;
     public Color colorDefault;
@@ -28,13 +29,9 @@ public class HudManager : MonoBehaviour
     // HUD PLAYER
     public Slider hpbar;
     public TMP_Text atackSpeed;
-     public static HudManager Instance{get;private set;}
+    public static HudManager Instance{get;private set;}
      //placeholder
-     public ClassesSo classesSo;
-     public StatsRange DmgR;
-    public StatsRange LifeR;
-    public StatsRange speedR;
-    public StatsRange atackSpdR;
+    
     private void Awake() {
         if (Instance != null && Instance !=this)
         {
@@ -44,28 +41,16 @@ public class HudManager : MonoBehaviour
             Instance =this;
         }
     } 
-    public void GetData(){
-        GameObject dataObj = GameObject.FindGameObjectWithTag("Data");
-        if(dataObj == null){
-            Debug.Log("Inciando a criação da Data");
-            GameObject dataOBj = new("DataPlaceholder");
-            data = dataOBj.AddComponent<Data>();
-            data.Player = new createChar("DataNotFound!!!",classesSo,ClassType.Warrior,DmgR,LifeR,speedR,atackSpdR).Create(classesSo);
-            data.playerName = "Eipsiudoidinhadoforro";
-            data.playerNick = "DataNotFound!!!!!";
-            Data.Instance.Player.life = 999;
-        }else{
-            data = dataObj.GetComponent<Data>();
-        }
-        Player = Data.Instance.Player;
-    }
+    
     private void Start() {
-        GetData();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        playerStatus = Player.GetComponent<PlayerStatus>();
+        
         textPopDamage = prefabPopDmg.GetComponentInChildren<TMP_Text>();
         fontSizeDefault = textPopDamage.fontSize;
         colorDefault = Color.white;
         impulseForceDefault = impulseForce;
-        hpbar.maxValue = Player.life;
+        hpbar.maxValue = playerStatus.maxLife;
     }
     private void Update(){
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -75,11 +60,11 @@ public class HudManager : MonoBehaviour
     }
     public void UpdateInventoryHud(){
      
-        nick.text = Player.nick;
-        damage.text = $"Base Damage: {Player.damage:f2}";
-        life.text = $"LifePoints: {Player.life:f2}/{Player.life:f2}";
-        speed.text = $"Speed: {Player.speed:f2}";
-        atackSpeed.text = $"AtackSpeed: {Player.atackSpeed:f2}";
+        nick.text = playerStatus.nick;
+        damage.text = $"Base Damage: {playerStatus.damage:f2}";
+        life.text = $"LifePoints: {playerStatus.currentLife:f2}/{playerStatus.maxLife:f2}";
+        speed.text = $"Speed: {playerStatus.speed:f2}";
+        atackSpeed.text = $"AtackSpeed: {playerStatus.atackSpeed:f2}";
 
     }
     public void updateHpBar(){

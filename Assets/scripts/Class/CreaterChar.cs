@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal;
 using UnityEngine;
 public class createChar{
     public string nick;
@@ -7,14 +8,18 @@ public class createChar{
     public StatsRange life;
     public StatsRange speed;
     public StatsRange atackSpeed;
-    public createChar(string nick,ClassesSo classesSo,ClassType classType,StatsRange damage, StatsRange life , StatsRange speed, StatsRange atackSpeed){
+    public float maxXp;
+    public float currentXp;
+    public createChar(string nick,ClassesSo classesSo){
         this.nick = nick;
         this.classesSo = classesSo;
-        this.classType = classType;
-        this.damage = damage;
-        this.life = life;
-        this.speed = speed;
-        this.atackSpeed = atackSpeed;
+        this.classType = classesSo.classType;
+        this.damage = classesSo.damage;
+        this.life = classesSo.life;
+        this.speed = classesSo.speed;
+        this.atackSpeed = classesSo.atackSpeed;
+        this.maxXp = 100;
+        this.currentXp = 0;
     }
     public Char Create(ClassesSo classesSo){
         var damage = classesSo.damage.getRandom();
@@ -24,14 +29,11 @@ public class createChar{
         switch (classType)
         {
             default: 
-            return new Slayer(nick,classesSo,classType,damage,life,speed,atackSpeed);
-            //
+            return new Slayer(nick,classesSo,classType,damage,life,speed,atackSpeed,maxXp,currentXp);
             case ClassType.Warrior:
-            return new Warrior(nick,classesSo,classType,damage,life,speed,atackSpeed);
-            //
+            return new Warrior(nick,classesSo,classType,damage,life,speed,atackSpeed,maxXp,currentXp);
             case ClassType.Espada:
-            return new Espada(nick,classesSo,classType,damage,life,speed,atackSpeed);
+            return new Espada(nick,classesSo,classType,damage,life,speed,atackSpeed,maxXp,currentXp);
         }
     }
- 
 }

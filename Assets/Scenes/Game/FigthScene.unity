@@ -1581,6 +1581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 464957671}
   - component: {fileID: 464957670}
+  - component: {fileID: 464957675}
   - component: {fileID: 464957669}
   - component: {fileID: 464957673}
   - component: {fileID: 464957672}
@@ -1767,6 +1768,29 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &464957675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464957668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7818643591a698ace9e6cac4f3c02600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatus
+  data: {fileID: 0}
+  classesSo: {fileID: 0}
+  nick: 
+  xp: 0
+  maxXp: 0
+  level: 0
+  maxLife: 0
+  currentLife: 0
+  damage: 0
+  speed: 0
+  atackSpeed: 0
 --- !u!1 &523133360 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7441577024000981526, guid: faa93a3d8316622bca1a4d058d03a289, type: 3}
@@ -1818,6 +1842,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
+  Player: {fileID: 0}
+  playerStatus: {fileID: 0}
   prefabPopDmg: {fileID: 3243802928054408368, guid: 5349f2a53f9c49244ab64928e265d4e8, type: 3}
   colorDefault: {r: 1, g: 1, b: 1, a: 0}
   fontSizeDefault: 0
@@ -1853,19 +1879,6 @@ MonoBehaviour:
   speed: {fileID: 2014268645}
   hpbar: {fileID: 1640493975}
   atackSpeed: {fileID: 822460382}
-  classesSo: {fileID: 11400000, guid: 8e289b8e42b8bf99cbea7b45a4b35330, type: 2}
-  DmgR:
-    min: 0
-    max: 1
-  LifeR:
-    min: 0
-    max: 3
-  speedR:
-    min: 0
-    max: 4
-  atackSpdR:
-    min: 0
-    max: 5
 --- !u!4 &538600201
 Transform:
   m_ObjectHideFlags: 0
@@ -6363,6 +6376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 100
   speed: 3
+  xpCarry: 0
   rangeAttack: 1
   rangeChase: 10
   player: {fileID: 464957671}
@@ -6679,6 +6693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 100
   speed: 3
+  xpCarry: 0
   rangeAttack: 1
   rangeChase: 10
   player: {fileID: 464957671}

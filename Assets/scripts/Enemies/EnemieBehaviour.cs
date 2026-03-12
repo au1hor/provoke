@@ -8,6 +8,7 @@ public class EnemieBehaviour : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float life = 100;
     public float speed;
+    public float xpCarry;
     public float rangeAttack;
     public float rangeChase;
     public Transform player;
@@ -23,12 +24,16 @@ public class EnemieBehaviour : MonoBehaviour
     }
     public TMP_Text StateText;
     public SpriteRenderer sprite;
-    
+
     Coroutine hit ;
 
     public void GetDamage(float damage)
     {
-        life -= 1;
+        life -= damage;
+        if (life <= 0)
+        {
+            Death();
+        }
         if (hit != null)
         {
             StopCoroutine(hit);
@@ -36,9 +41,12 @@ public class EnemieBehaviour : MonoBehaviour
         hit = StartCoroutine(HitEffect(damage));
         StateChange(States.getDamage);
     }
+    public void Death(){
+        player.gameObject.GetComponent<PlayerStatus>().GainXp(xpCarry);
+        Destroy(this.gameObject,0.1f);
+    }
     IEnumerator HitEffect(float damage)
     {
-        Debug.Log("AIAIAI");
         float timer = 0;
         Vector3 startpos = transform.position;
         Vector3 dir = (transform.position- player.position).normalized;
@@ -79,14 +87,12 @@ public class EnemieBehaviour : MonoBehaviour
     public void textAnimaton(string texto){
         if(textAnim != null){
             StopCoroutine(textAnim);
-            Debug.Log("cooritina paradinha");
         }
         textAnim = StartCoroutine(TextAnimation(texto));
         
 
     }
     IEnumerator TextAnimation(string Texto){
-         Debug.Log("Coroutine started");
         while (true)
         {
         StateText.text = Texto;

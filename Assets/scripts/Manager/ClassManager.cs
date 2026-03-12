@@ -30,7 +30,7 @@ public class ClassManager : MonoBehaviour
         SelectText.gameObject.SetActive(true);
         SelectText.text = $"Selected Card: <color=#{ColorUtility.ToHtmlStringRGB(cor)}>{card.name}</color>";
         ClassesSo classesSo = card.GetComponent<ClassesButton>().Classe;
-        Player = new createChar(nick,classesSo,classesSo.classType,classesSo.damage,classesSo.life,classesSo.speed,classesSo.atackSpeed).Create(classesSo);
+        Player = new createChar(nick,classesSo).Create(classesSo);
         Player.Hey();
         if (data!= null)
         {

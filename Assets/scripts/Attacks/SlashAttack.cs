@@ -25,7 +25,7 @@ public class SlashAttack : MonoBehaviour
     {
         rotation();
         progressionHit();
-        sound();
+       
         applyDamage();
       
         for (int i = 0; i < sprites.Length; i++)
@@ -57,6 +57,7 @@ public class SlashAttack : MonoBehaviour
         {
             if (ene.tag != "Player")
             {
+                 sound();
                 ene.GetComponent<EnemieBehaviour>().GetDamage(damage);
             }
         }
@@ -67,14 +68,14 @@ public class SlashAttack : MonoBehaviour
         PlayerAtack playerAtack = player.GetComponent<PlayerAtack>();
         playerAtack.hits += 1;
         damage *= playerAtack.hits;
-        atackPitch= Mathf.Max(0.1f * playerAtack.hits,0.7f);
+        atackPitch= Mathf.Min(0.5f * playerAtack.hits,0.7f);
         
-        if (playerAtack.hits == 22)
+        if (playerAtack.hits == 100)
         {
             playerAtack.hits = 0;
             damage *= 100;
             atackPitch = 0.65f;
-            audioSource.volume = 1;
+            audioSource.volume = 0.5f;
             HudManager.Instance.EspecialHit(Color.red,90);
             this.gameObject.transform.localScale = new Vector3(30,30,10);
             sprRender.color = Color.red;    

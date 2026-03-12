@@ -9,7 +9,9 @@ public abstract class Char
     public float life;
     public float speed;
     public float atackSpeed;
-    public Char(string nick,ClassesSo classesSo,ClassType classe,float damage, float life, float speed, float atackSpeed){
+    public float maxXp;
+    public float currentXp;
+    public Char(string nick,ClassesSo classesSo,ClassType classe,float damage, float life, float speed, float atackSpeed,float maxXp,float currentXp){
         this.nick = nick;
         this.classesSo = classesSo;
         this.classeType = classe;
@@ -17,10 +19,15 @@ public abstract class Char
         this.life = life;
         this.speed = speed;
         this.atackSpeed = atackSpeed;
+        this.maxXp = 100;
+        this.currentXp = 0;
     }
     
     public virtual void GetDamage(float damage){
         life -= damage;
+    }
+    public virtual void IncressXp(float amount){
+        currentXp += amount;
     }
     public virtual void Hey(){
         Debug.Log($"My name is {this.nick}!!!\n");
@@ -29,8 +36,8 @@ public abstract class Char
 }
 public class Warrior : Char
 {
-    public Warrior(string nick,ClassesSo classesSo,ClassType classe,float damage,float life,float speed,float attackSpeed)
-        : base(nick,classesSo,classe, damage, life, speed, attackSpeed){}
+    public Warrior(string nick,ClassesSo classesSo,ClassType classe,float damage,float life,float speed,float attackSpeed,float maxXp,float currentXp)
+        : base(nick,classesSo,classe, damage, life, speed, attackSpeed,maxXp,currentXp){}
     public void HeavyAttack()
     {
         Debug.Log("Warrior atacando");
@@ -44,8 +51,8 @@ public class Warrior : Char
 }
 public class Slayer : Char
 {
-    public Slayer(string nick,ClassesSo classesSo,ClassType classe,float damage,float life,float speed,float attackSpeed)
-        : base(nick,classesSo,classe, damage, life, speed, attackSpeed){}
+    public Slayer(string nick,ClassesSo classesSo,ClassType classe,float damage,float life,float speed,float attackSpeed,float maxXp,float currentXp)
+        : base(nick,classesSo,classe, damage, life, speed, attackSpeed,maxXp,currentXp){}
     public void attackSuddenly()
     {
         Debug.Log("Slayer atacando");
@@ -58,8 +65,8 @@ public class Slayer : Char
 }
 public class Espada : Char
 {
-    public Espada(string nick,ClassesSo classesSo,ClassType classe,float damage,float life,float speed,float attackSpeed)
-        : base(nick,classesSo,classe, damage, life, speed, attackSpeed){}
+    public Espada(string nick,ClassesSo classesSo,ClassType classe,float damage,float life,float speed,float attackSpeed,float maxXp,float currentXp)
+        : base(nick,classesSo,classe, damage, life, speed, attackSpeed,maxXp,currentXp){}
     public void slash()
     {
         Debug.Log("Espada atacando");
