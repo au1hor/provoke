@@ -22,10 +22,11 @@ public class HudManager : MonoBehaviour
     // Inventory
     public GameObject InventoryObj;
     public GameObject[] slots;
-    public TMP_Text nick;
-    public TMP_Text damage;
-    public TMP_Text life;
-    public TMP_Text speed;
+    public TMP_Text nivelTmp;
+    public TMP_Text nickTmp;
+    public TMP_Text damageTmp;
+    public TMP_Text lifeTmp;
+    public TMP_Text speedTmp;
     // HUD PLAYER
     public Slider hpbar;
     public TMP_Text atackSpeed;
@@ -59,11 +60,11 @@ public class HudManager : MonoBehaviour
         }
     }
     public void UpdateInventoryHud(){
-     
-        nick.text = playerStatus.nick;
-        damage.text = $"Base Damage: {playerStatus.damage:f2}";
-        life.text = $"LifePoints: {playerStatus.currentLife:f2}/{playerStatus.maxLife:f2}";
-        speed.text = $"Speed: {playerStatus.speed:f2}";
+        nivelTmp.text = $"{playerStatus.level}";
+        nickTmp.text = playerStatus.nick;
+        damageTmp.text = $"Base Damage: {playerStatus.damage:f2}";
+        lifeTmp.text = $"LifePoints: {playerStatus.currentLife:f2}/{playerStatus.maxLife:f2}";
+        speedTmp.text = $"Speed: {playerStatus.speed:f2}";
         atackSpeed.text = $"AtackSpeed: {playerStatus.atackSpeed:f2}";
 
     }

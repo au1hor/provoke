@@ -47,15 +47,23 @@ public class PlayerStatus : MonoBehaviour
         atackSpeed = data.Player.atackSpeed;
         xp = data.Player.currentXp;
     }
+    public void upStatus(){
+        maxLife *= 1.3f;
+        damage *= 1.3f;
+        speed *= 1.3f;
+        atackSpeed += atackSpeed * 1.3f;
+
+    }
     public void GainXp(float amount){
         Player.IncressXp(amount);
         xp = Player.currentXp;
         while(xp>= maxXp){
             level++;
             xp -= maxXp;
-            
+            upStatus();
         }
-        maxXp *= (1 + level / 10);
+        
+        maxXp *= 1.5f;
       
     }
 }
