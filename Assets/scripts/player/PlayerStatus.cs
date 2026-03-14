@@ -53,8 +53,9 @@ public class PlayerStatus : MonoBehaviour
         while(xp>= maxXp){
             level++;
             xp -= maxXp;
-            //maxXp *= 0.10f; // max xp ta dando bug pra krl pq essa logica ta merda arruamr 
+            
         }
-        Debug.Log("oxecckrl");
+        maxXp *= (1 + level / 10);
+      
     }
 }
