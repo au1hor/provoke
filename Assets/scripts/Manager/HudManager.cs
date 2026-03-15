@@ -27,6 +27,8 @@ public class HudManager : MonoBehaviour
     public TMP_Text damageTmp;
     public TMP_Text lifeTmp;
     public TMP_Text speedTmp;
+    // DowInventory
+    public TMP_Text xps;
     // HUD PLAYER
     public Slider hpbar;
     public TMP_Text atackSpeed;
@@ -52,6 +54,7 @@ public class HudManager : MonoBehaviour
         colorDefault = Color.white;
         impulseForceDefault = impulseForce;
         hpbar.maxValue = playerStatus.maxLife;
+        UpdateXpBar();
     }
     private void Update(){
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -70,6 +73,10 @@ public class HudManager : MonoBehaviour
     }
     public void updateHpBar(){
 
+    }
+    public void UpdateXpBar(){
+        xpBar.value = playerStatus.xp;
+        xpBar.maxValue = playerStatus.maxXp;
     }
     public void InventoryShow(){
        

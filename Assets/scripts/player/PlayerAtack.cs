@@ -46,6 +46,7 @@ public class PlayerAtack : MonoBehaviour
     }
     public void Update(){
         if (Input.GetMouseButtonDown(0)){
+            atackDamage = Data.Instance.Player.damage;
             instanceSprite(FindEnemies());
         }
     }

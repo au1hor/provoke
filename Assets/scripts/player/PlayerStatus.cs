@@ -12,6 +12,7 @@ public class PlayerStatus : MonoBehaviour
     public float xp;
     public float maxXp;
     public int level;
+    public int ups;
     public float maxLife;
     public float currentLife;
     public float damage;
@@ -57,13 +58,15 @@ public class PlayerStatus : MonoBehaviour
     public void GainXp(float amount){
         Player.IncressXp(amount);
         xp = Player.currentXp;
-        while(xp>= maxXp){
-            level++;
-            xp -= maxXp;
-            upStatus();
-        }
-        
-        maxXp *= 1.5f;
-      
+        if(xp >= maxXp)UpLevel();
+        HudManager.Instance.UpdateXpBar();
     }
+    public void UpLevel(){
+        while(xp >= maxXp){
+        level++;
+        xp -= maxXp;
+        maxXp *= 1.5f;
+        upStatus();
+        }
+        }
 }
