@@ -67,6 +67,7 @@ public class PlayerStatus : MonoBehaviour
         xp -= maxXp;
         maxXp *= 1.5f;
         upStatus();
+        Debug.Log("New level +++");
         }
         }
 }
