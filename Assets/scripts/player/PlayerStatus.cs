@@ -1,4 +1,4 @@
-using UnityEditor.U2D.Aseprite;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
