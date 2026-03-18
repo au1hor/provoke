@@ -41,6 +41,18 @@ public class EnemieBehaviour : MonoBehaviour
         hit = StartCoroutine(HitEffect(damage));
         StateChange(States.getDamage);
     }
+    public void Atacking(){
+        Collider2D[] enes = Physics2D.OverlapCircleAll(transform.position,90f);
+        foreach (Collider2D ene in enes)
+        {
+            if (ene.gameObject.tag == "Player")
+            {
+                ene.gameObject.GetComponent<PlayerStatus>().currentLife -= 100;            
+                Debug.Log("Player foi atackado");
+            }
+        }
+        
+    }
     public void Death(){
         player.gameObject.GetComponent<PlayerStatus>().GainXp(xpCarry);
         Destroy(this.gameObject,0.1f);
@@ -113,6 +125,7 @@ public class EnemieBehaviour : MonoBehaviour
         if (distance <= rangeAttack && hit == null )
         {
             StateChange(States.attack);
+             Atacking();
         }
         else if(distance <= rangeChase && hit == null)
         {
