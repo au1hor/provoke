@@ -1,5 +1,7 @@
 using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
@@ -10,6 +12,9 @@ public class AsHud : MonoBehaviour
     public Sprite circle;
     public Sprite circleFull;
     public GameObject currentNotice;
+    // change screens
+    public int actualScene = 0;
+    public GameObject[] screens;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +34,15 @@ public class AsHud : MonoBehaviour
         currentNotice.gameObject.SetActive(false);
         currentNotice = notice;
         notice.gameObject.SetActive(true);
+    }
+
+    public void ChangeScreen(int index){        
+        screens[index].gameObject.SetActive(true);
+        screens[actualScene].gameObject.SetActive(false);
+        actualScene = index;
+    }
+    public void DisplayActualScene(){
+
     }
     private void Start(){
         points[1].GetComponent<Image>().sprite = circleFull;
