@@ -1,6 +1,7 @@
+using System.Net;
 using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
@@ -41,9 +42,7 @@ public class AsHud : MonoBehaviour
         screens[actualScene].gameObject.SetActive(false);
         actualScene = index;
     }
-    public void DisplayActualScene(){
-
-    }
+  
     private void Start(){
         points[1].GetComponent<Image>().sprite = circleFull;
     }
