@@ -8,6 +8,7 @@ public class LocalesBehaviour : MonoBehaviour,IPointerEnterHandler,IPointerExitH
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void OnPointerEnter(PointerEventData data){
         this.gameObject.GetComponent<Outline>().enabled = true;
+        Debug.Log("fazer as sprites");
         
     }
     public void OnPointerExit(PointerEventData data){
